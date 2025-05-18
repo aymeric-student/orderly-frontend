@@ -1,0 +1,38 @@
+.stepper-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+}
+
+.page-description {
+  font-size: 1rem;
+  color: #555;
+}
+
+.stepper-layout {
+  display: flex;
+  justify-content: space-between;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.stepper-section {
+  flex: 0 0 60%;
+  min-width: 0;
+}
+
+.summary-section {
+  flex: 0 0 40%;
+  min-width: 0;
+}

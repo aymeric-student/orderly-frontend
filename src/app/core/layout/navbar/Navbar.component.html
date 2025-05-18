@@ -1,0 +1,117 @@
+<!--<mat-toolbar class="navbar">-->
+<!--  <button mat-icon-button>-->
+<!--    <mat-icon>menu</mat-icon>-->
+<!--  </button>-->
+
+<!--  <div class="d-flex w-full">-->
+<!--    <a class="brand accent-text" routerLink="/">-->
+<!--      {{ 'appBar.brand' | translate }}-->
+<!--    </a>-->
+
+<!--    <div class="nav-links">-->
+<!--      <a-->
+<!--        [routerLinkActiveOptions]="{ exact: true }"-->
+<!--        mat-button-->
+<!--        routerLink="/menu"-->
+<!--        routerLinkActive="active"-->
+<!--      >-->
+<!--        <mat-icon>restaurant_menu</mat-icon>-->
+<!--        {{ 'appBar.menu' | translate }}-->
+<!--      </a>-->
+
+<!--      <a-->
+<!--        mat-button-->
+<!--        routerLink="/menu/create"-->
+<!--      >-->
+<!--        <mat-icon>restaurant_menu</mat-icon>-->
+<!--        add Menu-->
+<!--      </a>-->
+
+<!--      <a-->
+<!--        mat-button-->
+<!--        routerLink="cart"-->
+<!--      >-->
+<!--        <mat-icon>shopping_cart</mat-icon>-->
+<!--        cart-->
+<!--      </a>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</mat-toolbar>-->
+
+<mat-toolbar class="header-toolbar" color="primary">
+  <div class="brand">
+    <img
+      alt="Logo"
+      class="logo"
+      src="https://images.pexels.com/photos/1629212/pexels-photo-1629212.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    >
+    <span class="brand-name">TaskMaster Pro</span>
+  </div>
+
+  <nav class="desktop-nav">
+    <a mat-button routerLink="/menu" routerLinkActive="active">
+      <mat-icon class="material-icons">restaurant_menu</mat-icon>
+      <span> {{ 'appBar.menu' | translate }}</span>
+    </a>
+    <a mat-button routerLink="/register" routerLinkActive="active">
+      <mat-icon class="material-icons">how_to_reg</mat-icon>
+      <span>Register</span>
+    </a>
+    <a mat-button routerLink="/profile" routerLinkActive="active">
+      <mat-icon class="material-icons">person</mat-icon>
+      <span>Profile</span>
+    </a>
+    <a mat-button routerLink="/settings" routerLinkActive="active">
+      <mat-icon class="material-icons">settings</mat-icon>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <div class="actions">
+    <button [matMenuTriggerFor]="userMenu" mat-icon-button>
+      <mat-icon class="material-icons">account_circle</mat-icon>
+    </button>
+  </div>
+
+  <button [matMenuTriggerFor]="mobileNav" class="mobile-menu" mat-icon-button>
+    <mat-icon class="material-icons">menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!-- User Menu -->
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item routerLink="/profile">
+    <mat-icon class="material-icons">person</mat-icon>
+    <span>My Profile</span>
+  </button>
+  <button mat-menu-item routerLink="/settings">
+    <mat-icon class="material-icons">settings</mat-icon>
+    <span>Settings</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item>
+    <mat-icon class="material-icons">logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
+
+<!-- Mobile Navigation Menu -->
+<mat-menu #mobileNav="matMenu">
+  <button mat-menu-item routerLink="/dashboard">
+    <mat-icon class="material-icons">dashboard</mat-icon>
+    <span>Dashboard</span>
+  </button>
+  <button mat-menu-item routerLink="/register">
+    <mat-icon class="material-icons">how_to_reg</mat-icon>
+    <span>Register</span>
+  </button>
+  <button mat-menu-item routerLink="/profile">
+    <mat-icon class="material-icons">person</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item routerLink="/settings">
+    <mat-icon class="material-icons">settings</mat-icon>
+    <span>Settings</span>
+  </button>
+</mat-menu>

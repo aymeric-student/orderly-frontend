@@ -1,0 +1,42 @@
+.confirmation-dialog {
+  padding: var(--space-4);
+}
+
+.dialog-header {
+  text-align: center;
+  margin-bottom: var(--space-4);
+
+  h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+}
+
+.dialog-content {
+  text-align: center;
+  margin-bottom: var(--space-4);
+
+  p {
+    margin: 0 0 var(--space-2) 0;
+    color: #666;
+  }
+}
+
+.success-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--primary-color) !important;
+  font-weight: 500;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+
+  button {
+    min-width: 200px;
+  }
+}

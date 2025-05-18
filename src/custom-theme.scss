@@ -1,0 +1,107 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+/* === PRIMARY === */
+$my-primary: mat.m2-define-palette(
+    (
+      50: #f0eae4,
+      100: #e0d5c8,
+      200: #d1c0ab,
+      300: #c1ab8f,
+      400: #b3977a,
+      500: #9f8e7b,
+      600: #8c7d6f,
+      700: #786762,
+      800: #655255,
+      900: #514d48,
+      contrast: (
+        50: #333333,
+        100: #333333,
+        200: #333333,
+        300: #333333,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+      ),
+    )
+);
+
+/* === ACCENT (SECONDARY) === */
+$my-accent: mat.m2-define-palette(
+    (
+      50: #e8e4df,
+      100: #d1c9bf,
+      200: #baad9f,
+      300: #a39280,
+      400: #8c7660,
+      500: #8a7b69,
+      600: #766a5c,
+      700: #62594f,
+      800: #4e4842,
+      900: #3a3735,
+      contrast: (
+        50: #333333,
+        100: #333333,
+        200: #333333,
+        300: #333333,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+      ),
+    )
+);
+
+/* === WARN === */
+$my-warn: mat.m2-define-palette(
+    (
+      50: #f9d6d9,
+      100: #f2aeb3,
+      200: #ec858d,
+      300: #e55d67,
+      400: #df3440,
+      500: #b00020,
+      600: #9e001c,
+      700: #8c0018,
+      800: #7a0014,
+      900: #680010,
+      contrast: (
+        50: #ffffff,
+        100: #ffffff,
+        200: #ffffff,
+        300: #ffffff,
+        400: #ffffff,
+        500: #ffffff,
+        600: #ffffff,
+        700: #ffffff,
+        800: #ffffff,
+        900: #ffffff,
+      ),
+    )
+);
+
+/* === FULL THEME === */
+$my-theme: mat.m2-define-light-theme(
+    (
+      color: (
+        primary: $my-primary,
+        accent: $my-accent,
+        warn: $my-warn,
+        background: (
+          background: #faf9f6,
+          // Fond principal
+          surface: #ffffff,
+          // Surfaces (mat-card, mat-form-field)
+        ),
+      ),
+    )
+);
+
+/* === APPLY THEME === */
+@include mat.all-component-themes($my-theme);

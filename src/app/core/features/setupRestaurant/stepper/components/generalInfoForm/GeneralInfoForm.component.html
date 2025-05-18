@@ -1,0 +1,90 @@
+<form [formGroup]="formGroup">
+
+  <div class="section-header">
+    <div class="header-content">
+      <mat-icon color="primary">store</mat-icon>
+      <h3>{{ 'addMenu.firstStep.title' | translate }}</h3>
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'addMenu.firstStep.name' | translate }}</mat-label>
+    <mat-icon matPrefix>store</mat-icon>
+    <input formControlName="name" matInput />
+    <mat-error *ngIf="formGroup.get('name')?.invalid">
+      {{ 'addMenu.firstStep.nameRequired' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'addMenu.firstStep.website' | translate }}</mat-label>
+    <mat-icon matPrefix>language</mat-icon>
+    <input (blur)="formGroup.get('website')?.markAsTouched()" formControlName="website" matInput type="url" />
+    <mat-error *ngIf="formGroup.get('website')?.hasError('pattern') && formGroup.get('website')?.touched">
+      {{ 'addMenu.firstStep.websiteInvalid' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'addMenu.firstStep.phone' | translate }}</mat-label>
+    <mat-icon matPrefix>call</mat-icon>
+    <input
+      (blur)="formatPhoneNumber()"
+      formControlName="phone"
+      matInput
+      type="tel" />
+    <mat-error *ngIf="formGroup.get('phone')?.hasError('pattern')">
+      {{ 'addMenu.firstStep.phoneInvalid' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'addMenu.firstStep.email' | translate }}</mat-label>
+    <mat-icon matPrefix>mail</mat-icon>
+    <input formControlName="email" matInput type="email" />
+    <mat-error *ngIf="formGroup.get('email')?.hasError('email')">
+      {{ 'addMenu.firstStep.emailInvalid' | translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>{{ 'addMenu.firstStep.cuisine' | translate }}</mat-label>
+    <mat-select formControlName="cuisine">
+      <mat-option value="italian">Italienne</mat-option>
+      <mat-option value="asian">Asiatique</mat-option>
+      <mat-option value="vegetarian">Végétarienne</mat-option>
+      <mat-option value="french">Française</mat-option>
+      <mat-option value="other">Autre</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="add-address-wrapper">
+    <button (click)="openAddressDialog()" color="primary" mat-raised-button type="button">
+      <mat-icon>{{ address ? 'edit_location' : 'add_location' }}</mat-icon>
+      <span class="ml-2">
+      {{ address ? ('addMenu.firstStep.editAddress' | translate) : ('addMenu.firstStep.addAddress' | translate) }}
+    </span>
+    </button>
+    <div *ngIf="address" class="chip-container">
+      <mat-chip color="accent" selected>
+        {{ address.street }}, {{ address.city }} ({{ address.zip }}) - {{ address.country }}
+      </mat-chip>
+    </div>
+
+    <mat-hint *ngIf="!address" class="text-muted">
+      <mat-icon class="mr-1">info</mat-icon>
+      {{ 'addMenu.firstStep.noAddress' | translate }}
+    </mat-hint>
+  </div>
+
+  <div class="step-actions">
+    <button
+      [disabled]="!formGroup.valid"
+      color="primary"
+      mat-flat-button
+      matStepperNext>
+      {{ 'addMenu.firstStep.next' | translate }}
+      <mat-icon class="ms-2">arrow_forward</mat-icon>
+    </button>
+  </div>
+</form>

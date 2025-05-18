@@ -1,0 +1,71 @@
+<div class="stepper-container">
+  <div class="content-wrapper">
+
+    <!-- Titre -->
+    <h1>{{ 'appBar.menu' | translate }}</h1>
+    <p class="page-description">{{ 'addressDialog.subtitle' | translate }}</p>
+    <mat-divider></mat-divider>
+
+    <!-- Layout principal -->
+    <div class="stepper-layout">
+
+      <!-- Stepper -->
+      <div class="stepper-section">
+        <mat-stepper #stepper (selectionChange)="currentStep = $event.selectedIndex" [linear]="false"
+                     orientation="vertical">
+
+          <!-- Étape 1 : Informations générales -->
+          <mat-step [stepControl]="form.get('generalInfo')!">
+            <ng-template matStepLabel>
+              {{ 'addMenu.firstStep.title' | translate }}
+            </ng-template>
+            <general-info-form [formGroup]="generalInfoForm"></general-info-form>
+          </mat-step>
+
+          <!-- Étape 2 : Menu / Catégories -->
+          <mat-step [stepControl]="form.get('menu')!">
+            <ng-template matStepLabel>
+              {{ 'addMenu.secondStep.title' | translate }}
+            </ng-template>
+            <info-menu [itemForm]="menuForm"></info-menu>
+          </mat-step>
+
+          <!-- Étape 3 : Paramètres de commande -->
+          <mat-step [stepControl]="form.get('settings')!">
+            <ng-template matStepLabel>
+              {{ 'addMenu.thirdStep.title' | translate }}
+            </ng-template>
+            <order-settings-form [formGroup]="settingsForm"></order-settings-form>
+          </mat-step>
+
+          <!-- Étape 4 : Équipe -->
+          <mat-step [stepControl]="form.get('team')!">
+            <ng-template matStepLabel>
+              {{ 'addMenu.fourthStep.title' | translate }}
+            </ng-template>
+            <team-form [teamForm]="teamForm"></team-form>
+          </mat-step>
+
+          <!-- Étape 5 : Confirmation -->
+          <mat-step [stepControl]="form.get('confirmation')!">
+            <ng-template matStepLabel>
+              {{ 'addMenu.fifthStep.title' | translate }}
+            </ng-template>
+            <restaurant-confirmation-form (finish)="handleFinalSubmit()"
+                                          [confirmationForm]="confirmationForm"
+            ></restaurant-confirmation-form>
+          </mat-step>
+
+        </mat-stepper>
+      </div>
+
+      <!-- Résumé -->
+      <div class="summary-section">
+        <setup-restaurant-summary
+          [currentStep]="currentStep"
+          [form]="form"
+        ></setup-restaurant-summary>
+      </div>
+    </div>
+  </div>
+</div>

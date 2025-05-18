@@ -1,0 +1,61 @@
+<form [formGroup]="confirmationForm">
+  <div class="section-header">
+    <div class="header-content">
+      <mat-icon color="primary">check_circle</mat-icon>
+      <h3>{{ 'addMenu.fifthStep.title' | translate }}</h3>
+    </div>
+  </div>
+
+  <div class="confirmation-container">
+    <div class="quote-section">
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <blockquote class="inspiration-quote">
+            <p>{{ 'addMenu.fifthStep.quote' | translate }}</p>
+            <footer>{{ 'addMenu.fifthStep.quoteAuthor' | translate }}</footer>
+          </blockquote>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="terms-section">
+      <h3>{{ 'addMenu.fifthStep.sectionTitle' | translate }}</h3>
+      <p class="section-description">
+        {{ 'addMenu.fifthStep.sectionDescription' | translate }}
+      </p>
+
+      <div class="checkbox-group">
+        <mat-checkbox color="primary" formControlName="qualityStandards">
+          {{ 'addMenu.fifthStep.qualityStandards' | translate }}
+        </mat-checkbox>
+
+        <mat-checkbox color="primary" formControlName="accurateInfo">
+          {{ 'addMenu.fifthStep.accurateInfo' | translate }}
+        </mat-checkbox>
+
+        <mat-checkbox color="primary" formControlName="termsAndConditions">
+          {{ 'addMenu.fifthStep.termsAndConditions' | translate }}
+        </mat-checkbox>
+
+        <mat-checkbox color="primary" formControlName="notifications">
+          {{ 'addMenu.fifthStep.notifications' | translate }}
+        </mat-checkbox>
+      </div>
+
+      <mat-divider class="section-divider"></mat-divider>
+
+      <div class="confirmation-message">
+        <mat-icon color="primary">info</mat-icon>
+        <p>{{ 'addMenu.fifthStep.confirmationMessage' | translate }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-actions mt-4 text-end">
+    <button (click)="finishSetupRestaurant()" color="primary" mat-flat-button>
+      {{ 'addMenu.fifthStep.finish' | translate }}
+      <mat-icon class="ms-2">check</mat-icon>
+    </button>
+  </div>
+
+</form>

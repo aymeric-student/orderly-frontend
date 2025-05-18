@@ -1,0 +1,130 @@
+<form [formGroup]="formGroup" class="menu-settings-form">
+  <!-- En-tête section -->
+  <div class="section-header">
+    <div class="header-content">
+      <mat-icon color="primary">shopping_cart</mat-icon>
+      <h3>{{ 'addMenu.thirdStep.title' | translate }}</h3>
+    </div>
+  </div>
+
+  <!-- Options de commande -->
+  <div class="mb-2">
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ 'addMenu.thirdStep.orderOptionsTitle' | translate }}</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="panel-content">
+        <mat-slide-toggle class="mb-4" formControlName="enableOnlineOrdering">
+          <div class="toggle-content">
+            <span class="toggle-title">{{ 'addMenu.thirdStep.enableOrdering' | translate }}</span>
+            <span class="toggle-description">
+            {{ 'addMenu.thirdStep.enableOrderingHint' | translate }}
+          </span>
+          </div>
+        </mat-slide-toggle>
+
+        <div class="order-modes">
+          <div class="checkbox-group">
+            <mat-checkbox formControlName="onSite">
+              <div class="checkbox-content">
+                <span class="checkbox-title">{{ 'addMenu.thirdStep.onSite' | translate }}</span>
+                <span class="checkbox-description">{{ 'addMenu.thirdStep.onSiteHint' | translate }}</span>
+              </div>
+            </mat-checkbox>
+
+            <mat-checkbox formControlName="takeAway">
+              <div class="checkbox-content">
+                <span class="checkbox-title">{{ 'addMenu.thirdStep.takeAway' | translate }}</span>
+                <span class="checkbox-description">{{ 'addMenu.thirdStep.takeAwayHint' | translate }}</span>
+              </div>
+            </mat-checkbox>
+
+            <mat-checkbox formControlName="delivery">
+              <div class="checkbox-content">
+                <span class="checkbox-title">{{ 'addMenu.thirdStep.delivery' | translate }}</span>
+                <span class="checkbox-description">{{ 'addMenu.thirdStep.deliveryHint' | translate }}</span>
+              </div>
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+  </div>
+  <!-- Paramètres avancés -->
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ 'addMenu.thirdStep.advancedSettings' | translate }}</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="panel-content">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'addMenu.thirdStep.minOrderAmount' | translate }}</mat-label>
+        <input formControlName="minOrderAmount" matInput min="0" required type="number" />
+        <mat-icon matPrefix>euro</mat-icon>
+        <mat-hint>{{ 'addMenu.thirdStep.minOrderAmountHint' | translate }}</mat-hint>
+        <mat-error *ngIf="formGroup.get('minOrderAmount')?.hasError('required')">
+          {{ 'addMenu.thirdStep.minOrderAmountRequired' | translate }}
+        </mat-error>
+        <mat-error *ngIf="formGroup.get('minOrderAmount')?.hasError('min')">
+          {{ 'addMenu.thirdStep.minOrderAmountMin' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="time-settings">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'addMenu.thirdStep.openingTime' | translate }}</mat-label>
+          <input formControlName="openingTime" matInput required type="time" />
+          <mat-icon matPrefix>schedule</mat-icon>
+          <mat-error *ngIf="formGroup.get('openingTime')?.hasError('required')">
+            {{ 'addMenu.thirdStep.openingTimeRequired' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'addMenu.thirdStep.closingTime' | translate }}</mat-label>
+          <input formControlName="closingTime" matInput required type="time" />
+          <mat-icon matPrefix>schedule</mat-icon>
+          <mat-error *ngIf="formGroup.get('closingTime')?.hasError('required')">
+            {{ 'addMenu.thirdStep.closingTimeRequired' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="formGroup?.errors as errors" class="validation-errors">
+        <mat-error *ngIf="errors['invalidTimeRange']">
+          {{ 'addMenu.thirdStep.invalidTimeRange' | translate }}
+        </mat-error>
+        <mat-error *ngIf="errors['minOpeningDuration']">
+          {{ 'addMenu.thirdStep.minOpeningDuration' | translate }}
+        </mat-error>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'addMenu.thirdStep.prepTime' | translate }}</mat-label>
+        <input formControlName="prepTime" matInput min="5" required type="number" />
+        <mat-icon matPrefix>timer</mat-icon>
+        <mat-error *ngIf="formGroup.get('prepTime')?.hasError('required')">
+          {{ 'addMenu.thirdStep.prepTimeRequired' | translate }}
+        </mat-error>
+        <mat-error *ngIf="formGroup.get('prepTime')?.hasError('min')">
+          {{ 'addMenu.thirdStep.prepTimeMin' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Actions stepper -->
+  <div class="step-actions mt-4">
+    <button color="primary" mat-flat-button matStepperPrevious>
+      <mat-icon class="me-2">arrow_back</mat-icon>
+      {{ 'addMenu.thirdStep.previous' | translate }}
+    </button>
+
+    <button [disabled]="!formGroup.valid" color="primary" mat-flat-button matStepperNext>
+      {{ 'addMenu.thirdStep.next' | translate }}
+      <mat-icon class="ms-2">arrow_forward</mat-icon>
+    </button>
+  </div>
+</form>

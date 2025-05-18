@@ -1,0 +1,46 @@
+
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: var(--space-3);
+}
+
+.not-found-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+  line-height: 1;
+  animation: pulse 2s infinite;
+}
+
+.error-title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin: var(--space-2) 0;
+  color: #333;
+}
+
+.error-description {
+  color: #666;
+  margin-bottom: var(--space-4);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}

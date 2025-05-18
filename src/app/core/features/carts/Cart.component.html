@@ -1,0 +1,74 @@
+<div class="cart-container">
+  <div class="header-section">
+    <div class="header-content">
+      <div>
+        <h1 class="page-title">Votre Panier</h1>
+        <p class="page-description">Vérifiez et modifiez vos articles</p>
+      </div>
+      <button color="primary" mat-raised-button routerLink="/menu">
+        <mat-icon>arrow_back</mat-icon>
+        Retour au menu
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="cartItems$ | async as items" class="cart-content">
+    <ng-container *ngIf="items.length > 0; else emptyCart">
+      <div class="cart-items">
+        <mat-card *ngFor="let item of items" appearance="outlined" class="cart-item">
+          <div class="item-details">
+            <div class="item-info">
+              <h3>{{ item.name }}</h3>
+              <p class="price">{{ item.price | currency:'EUR' }}</p>
+            </div>
+            <div class="quantity-controls">
+              <button
+                (click)="decrementItemFromCart(item)"
+                mat-icon-button
+              >
+                <mat-icon>remove</mat-icon>
+              </button>
+              <span class="quantity">{{ item.quantity }}</span>
+              <button (click)="addProductToCart(item)" mat-icon-button>
+                <mat-icon>add</mat-icon>
+              </button>
+              <button (click)="clearItemCard(item)" color="warn" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <mat-card appearance="outlined" class="cart-summary">
+        <mat-card-content>
+          <h2>Résumé de la commande</h2>
+          <mat-divider></mat-divider>
+          <div class="summary-row">
+            <span>Total</span>
+            <span class="total">{{ cartTotal$ | async | currency:'EUR' }}</span>
+          </div>
+          <button class="checkout-button" color="primary" mat-raised-button>
+            Passer la commande
+          </button>
+          <button (click)="clearCard()" color="warn" mat-button>
+            Vider le panier
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+
+    <ng-template #emptyCart>
+      <mat-card appearance="outlined" class="empty-cart">
+        <mat-card-content>
+          <mat-icon class="empty-cart-icon">shopping_cart</mat-icon>
+          <h2>Votre panier est vide</h2>
+          <p>Ajoutez des articles depuis notre menu</p>
+          <button color="primary" mat-raised-button routerLink="/menu">
+            Voir le menu
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
+  </div>
+</div>

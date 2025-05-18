@@ -1,0 +1,94 @@
+<div class="team-container">
+  <div class="section-header">
+    <div class="header-content">
+      <mat-icon color="primary">groups</mat-icon>
+      <h3>{{ 'addMenu.fourthStep.title' | translate }}</h3>
+    </div>
+    <button (click)="addEmployee()" color="primary" mat-flat-button>
+      <mat-icon>person_add</mat-icon>
+      {{ 'addMenu.fourthStep.addMember' | translate }}
+    </button>
+  </div>
+
+  <form [formGroup]="teamForm">
+    <div formArrayName="employees">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let employee of employees.controls; let i = index" [formGroupName]="i">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ employee.value.name || ('addMenu.fourthStep.addMember' | translate) + ' ' + (i + 1) }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <button (click)="removeEmployee(i); $event.stopPropagation()" color="warn" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="employee-form">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'addMenu.fourthStep.name' | translate }}</mat-label>
+              <input formControlName="name" matInput required />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'addMenu.fourthStep.role' | translate }}</mat-label>
+              <mat-select formControlName="role" required>
+                <mat-option value="Chef Cuisinier">Chef Cuisinier</mat-option>
+                <mat-option value="Serveur">Serveur</mat-option>
+                <mat-option value="Barman">Barman</mat-option>
+                <mat-option value="Pâtissier">Pâtissier</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'addMenu.fourthStep.email' | translate }}</mat-label>
+              <input formControlName="email" matInput type="email" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'addMenu.fourthStep.phone' | translate }}</mat-label>
+              <input formControlName="phone" matInput />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>{{ 'addMenu.fourthStep.schedule' | translate }}</mat-label>
+              <mat-select formControlName="schedule" multiple>
+                <mat-option value="Lun">Lundi</mat-option>
+                <mat-option value="Mar">Mardi</mat-option>
+                <mat-option value="Mer">Mercredi</mat-option>
+                <mat-option value="Jeu">Jeudi</mat-option>
+                <mat-option value="Ven">Vendredi</mat-option>
+                <mat-option value="Sam">Samedi</mat-option>
+                <mat-option value="Dim">Dimanche</mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="employee.get('schedule')?.hasError('minSelectedDays')">
+                Sélectionne au moins 3 jours.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div class="step-actions mt-4">
+      <button
+        color="primary"
+        mat-flat-button
+        matStepperPrevious>
+        <mat-icon class="me-2">arrow_back</mat-icon>
+        {{ 'addMenu.fourthStep.previous' | translate }}
+      </button>
+
+      <button
+        [disabled]="!isStepValid()"
+        color="primary"
+        mat-flat-button
+        matStepperNext>
+        {{ 'addMenu.fourthStep.next' | translate }}
+        <mat-icon class="ms-2">arrow_forward</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

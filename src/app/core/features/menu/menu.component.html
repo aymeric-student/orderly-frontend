@@ -1,0 +1,85 @@
+<div>
+  <div class="container">
+    <div class="menu-container flex-column">
+
+      <!-- Titre et sous-titre intégrés dans la structure -->
+      <div class="top-bar flex space-between align-center">
+        <div class="item flex-column">
+          <h1 class="page-title">{{ 'appBar.menu' | translate }}</h1>
+          <p class="page-subtitle">{{ 'summary.menu.title' | translate }}</p>
+        </div>
+        <button class="go-to-cart-button" color="primary" mat-flat-button>
+          <mat-icon>shopping_cart</mat-icon>
+          {{ 'menu.goToCart' | translate }}
+        </button>
+      </div>
+
+      <div class="row-item flex">
+
+        <!-- Barre latérale des catégories -->
+        <mat-card appearance="outlined" class="categories">
+          <mat-nav-list>
+            <mat-list-item
+              (click)="selectedSection = section"
+              (keydown.enter)="selectedSection = section"
+              (keydown.space)="selectedSection = section"
+              *ngFor="let section of menuSections"
+              [class.active]="selectedSection === section"
+              class="category-item"
+              matRipple
+              tabindex="0">
+              <mat-icon matListItemIcon>{{ section.icon }}</mat-icon>
+              <span matLine>{{ section.name }}</span>
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-card>
+
+        <!-- Affichage des items du menu -->
+        <div class="menu-items">
+          <div class="items-grid grid-3 padded-grid">
+            <mat-card *ngFor="let item of selectedSection.items" class="menu-item-card">
+              <mat-card-header>
+                <mat-card-title>
+                  {{ item.name }}
+                  <mat-icon *ngIf="item.bestseller" class="bestseller-icon" color="accent">star</mat-icon>
+                </mat-card-title>
+                <mat-card-subtitle>{{ item.price | currency:'EUR' }}</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <p class="item-description">{{ item.description }}</p>
+
+                <div class="ingredients">
+                  <small class="ingredients-label">{{ 'addMenu.secondStep.itemIngredients' | translate }}:</small>
+                  <div class="ingredients-list">
+                    <span *ngFor="let ingredient of item.ingredients" class="ingredient-chip">
+                      {{ ingredient }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="tags">
+                  <mat-chip-set>
+                    <mat-chip *ngIf="item.vegetarian" color="accent">{{ 'menu.vegetarian' | translate }}</mat-chip>
+                    <mat-chip *ngIf="item.vegan" color="accent">{{ 'menu.vegan' | translate }}</mat-chip>
+                    <mat-chip *ngIf="item.glutenFree" color="accent">{{ 'menu.glutenFree' | translate }}</mat-chip>
+                    <mat-chip *ngIf="item.spicy" color="warn">{{ 'menu.spicy' | translate }}</mat-chip>
+                    <mat-chip *ngIf="item.new" color="primary">{{ 'menu.new' | translate }}</mat-chip>
+                  </mat-chip-set>
+                </div>
+              </mat-card-content>
+
+              <mat-card-actions align="end">
+                <button (click)="addToCart(item)" color="primary" mat-raised-button>
+                  <mat-icon>add_shopping_cart</mat-icon>
+                  {{ 'menu.addToCart' | translate }}
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

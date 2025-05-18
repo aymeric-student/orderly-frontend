@@ -1,0 +1,88 @@
+<div class="modal-container">
+  <h2 class="dialog-title">{{ 'addressDialog.title' | translate }}</h2>
+  <p class="dialog-subtitle">{{ 'addressDialog.subtitle' | translate }}</p>
+
+  <form (ngSubmit)="submit()" [formGroup]="addressForm" class="form-grid">
+    <!-- Rue avec autocomplétion -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-icon matPrefix>home</mat-icon>
+      <mat-label>{{ 'addressDialog.street' | translate }}</mat-label>
+      <input
+        [matAutocomplete]="auto"
+        [placeholder]="'addressDialog.placeholder.street' | translate"
+        formControlName="street"
+        matInput
+        type="text" />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onAddressSelected($event.option.value)">
+        <mat-option *ngFor="let addr of suggestions" [value]="addr">
+          {{ addr.street }}, {{ addr.city }} ({{ addr.zip }}) - {{ addr.country }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Ville -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-icon matPrefix>location_city</mat-icon>
+      <mat-label>{{ 'addressDialog.city' | translate }}</mat-label>
+      <input
+        [placeholder]="'addressDialog.placeholder.city' | translate"
+        formControlName="city"
+        matInput />
+    </mat-form-field>
+
+    <!-- Code postal -->
+    <mat-form-field appearance="outline" class="half-width">
+      <mat-icon matPrefix>markunread_mailbox</mat-icon>
+      <mat-label>{{ 'addressDialog.zip' | translate }}</mat-label>
+      <input
+        [placeholder]="'addressDialog.placeholder.zip' | translate"
+        formControlName="zip"
+        matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="half-width">
+      <mat-icon matPrefix>public</mat-icon>
+      <mat-label>{{ 'addressDialog.country' | translate }}</mat-label>
+
+      <mat-select formControlName="country">
+        <mat-select-trigger>
+          <ng-container *ngIf="addressForm.get('country')?.value as selectedCountry">
+            <img
+              [alt]="selectedCountry"
+              [ngSrc]="getFlag(selectedCountry) || 'placeholder.svg'"
+              class="mr-2 inline align-middle"
+              height="16"
+              width="24"
+            />
+
+            {{ selectedCountry }}
+          </ng-container>
+        </mat-select-trigger>
+
+        <mat-option *ngFor="let country of countryFlags" [value]="country.name">
+          <img
+            [alt]="country.name"
+            [ngSrc]="country.flag || 'placeholder.svg'"
+            class="mr-2"
+            height="16"
+            width="24"
+          />
+          {{ country.name }}
+        </mat-option>
+      </mat-select>
+
+    </mat-form-field>
+
+    <!-- Actions -->
+    <div class="dialog-actions">
+      <button (click)="cancel()" mat-button type="button">
+        {{ 'addressDialog.cancel' | translate }}
+      </button>
+      <button color="primary" mat-raised-button type="submit">
+        {{ 'addressDialog.validate' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

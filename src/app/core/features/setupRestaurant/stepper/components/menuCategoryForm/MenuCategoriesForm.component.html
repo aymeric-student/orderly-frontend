@@ -1,0 +1,161 @@
+<form [formGroup]="itemForm">
+  <div class="categories-container">
+    <div class="section-header">
+      <div class="header-content">
+        <mat-icon color="primary">restaurant_menu</mat-icon>
+        <h3>{{ 'addMenu.secondStep.title' | translate }}</h3>
+      </div>
+      <button
+        (click)="addCategory()"
+        color="primary"
+        mat-flat-button
+        matTooltip="{{ 'addMenu.secondStep.addCategory' | translate }}"
+        type="button"
+      >
+        <mat-icon>add</mat-icon>
+        {{ 'addMenu.secondStep.addCategory' | translate }}
+      </button>
+    </div>
+
+    <div class="categories-list" formArrayName="categories">
+      <mat-expansion-panel
+        *ngFor="let category of categories.controls; let i = index"
+        [expanded]="i === 0"
+        class="catetory-panel"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ category.get('name')?.value || ('addMenu.secondStep.placeholder' | translate) }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ categoryItems(i).length }} plat(s)
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div [formGroupName]="i" class="category-content">
+          <div class="category-header">
+            <div class="input-row full-width">
+              <mat-form-field appearance="outline" class="category-name-field full-width">
+                <mat-label>{{ 'addMenu.secondStep.nameLabel' | translate }}</mat-label>
+                <input formControlName="name" matInput required />
+                <mat-error *ngIf="category.get('name')?.hasError('required')">
+                  {{ 'addMenu.secondStep.nameLabel' | translate }} est requis.
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Icône</mat-label>
+                <mat-select formControlName="icon" required>
+                  <mat-option value="restaurant_menu">🍽️ Menu</mat-option>
+                  <mat-option value="lunch_dining">🍔 Plats</mat-option>
+                  <mat-option value="bakery_dining">🥖 Boulangerie</mat-option>
+                  <mat-option value="local_pizza">🍕 Pizza</mat-option>
+                  <mat-option value="local_bar">🍷 Boissons</mat-option>
+                  <mat-option value="icecream">🍨 Desserts</mat-option>
+                  <mat-option value="coffee">☕ Café</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <button
+              (click)="removeCategory(i)"
+              *ngIf="categories.length > 1"
+              [matTooltip]="'addMenu.secondStep.removeCategory' | translate"
+              color="warn"
+              mat-icon-button
+              type="button"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="items-list" formArrayName="items">
+            <div *ngFor="let item of categoryItems(i).controls; let j = index"
+                 [formGroupName]="j"
+                 class="menu-items"
+            >
+              <div class="item-header">
+                <h4>{{ 'addMenu.secondStep.itemName' | translate }} {{ j + 1 }}</h4>
+                <button
+                  (click)="removeItem(i,j)"
+                  [matTooltip]="'addMenu.secondStep.removeItem' | translate"
+                  color="warn"
+                  mat-icon-button
+                  type="button"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
+              <div class="item-form">
+                <div class="input-row">
+                  <mat-form-field appearance="outline" class="category-name-field full-width">
+                    <mat-label>{{ 'addMenu.secondStep.itemName' | translate }}</mat-label>
+                    <input formControlName="name" matInput
+                           placeholder="{{ 'addMenu.secondStep.itemNamePlaceholder' | translate }}"
+                           required />
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>{{ 'addMenu.secondStep.itemPrice' | translate }}</mat-label>
+                    <input
+                      formControlName="price"
+                      matInput
+                      min="0"
+                      placeholder="{{ 'addMenu.secondStep.itemPricePlaceholder' | translate }}"
+                      required
+                      step="0.1"
+                      type="number"
+                    />
+                    <mat-icon matPrefix>euro</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>{{ 'addMenu.secondStep.itemDescription' | translate }}</mat-label>
+                  <textarea
+                    formControlName="description"
+                    matInput
+                    placeholder="{{ 'addMenu.secondStep.itemDescriptionPlaceholder' | translate }}"
+                    rows="2"
+                  ></textarea>
+                </mat-form-field>
+
+                <div class="items-options mb-1">
+                  <mat-checkbox formControlName="vegetarian">Végétarien</mat-checkbox>
+                  <mat-checkbox formControlName="vegan">Vegan</mat-checkbox>
+                  <mat-checkbox formControlName="glutenFree">Sans gluten</mat-checkbox>
+                  <mat-checkbox formControlName="spicy">Épicé</mat-checkbox>
+                </div>
+              </div>
+            </div>
+
+            <button
+              (click)="addItem(i)"
+              class="add-item-button"
+              color="primary"
+              mat-stroked-button
+              type="button"
+            >
+              {{ 'addMenu.secondStep.addItem' | translate }}
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </div>
+
+  <div class="step-actions">
+    <button color="primary" mat-flat-button matStepperPrevious>
+      <mat-icon class="me-2">arrow_back</mat-icon>
+      {{ 'addMenu.secondStep.previous' | translate }}
+    </button>
+
+    <button color="primary" mat-flat-button matStepperNext>
+      {{ 'addMenu.secondStep.next' | translate }}
+      <mat-icon class="ms-2">arrow_forward</mat-icon>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,124 @@
+.menu-container {
+  gap: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ──────── TOP BAR ──────── */
+.top-bar {
+  h1 {
+    margin: 0;
+    font-size: 2.5rem;
+  }
+
+  p {
+    margin: 4px 0 16px;
+    color: #666;
+  }
+}
+
+/* ──────── LAYOUT 2 COLONNES ──────── */
+/* ────────  SIDEBAR DES CATÉGORIES ──────── */
+.categories {
+  min-width: 250px;
+
+  .mat-list-item.active {
+    border-right: 4px solid #e53935;
+    background-color: rgba(229, 57, 53, 0.05);
+  }
+}
+
+/* ──────── GRILLE D’ITEMS DU MENU ──────── */
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  padding: var(--space-2);
+}
+
+
+/* ──────── FICHE ITEM ──────── */
+.menu-item-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  mat-card-content {
+    flex-grow: 1;
+  }
+
+  mat-card-actions {
+    padding: var(--space-2);
+    margin: 0;
+  }
+}
+
+.bestseller-icon {
+  font-size: 20px;
+  margin-left: var(--space-1);
+  vertical-align: sub;
+}
+
+.item-description {
+  color: #666;
+  margin: var(--space-2) 0;
+  line-height: 1.5;
+}
+
+/* ──────── INGRÉDIENTS ──────── */
+.ingredients {
+  margin: var(--space-2) 0;
+
+  &-label {
+    color: #666;
+    display: block;
+    margin-bottom: var(--space-1);
+  }
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+}
+
+.ingredient-chip {
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* ──────── TAGS ──────── */
+.tags {
+  margin-top: var(--space-2);
+}
+
+/* ──────── RESPONSIVE ──────── */
+@media (max-width: 768px) {
+  .items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .categories {
+    margin-bottom: var(--space-3);
+  }
+
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .top-bar h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,107 @@
+<mat-card class="setup-summary with-min-height">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>summarize</mat-icon>
+      {{ 'summary.title' | translate }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <ng-container *ngIf="hasAnyInfo(); else noInfo">
+      <div *ngIf="currentStep >= 1 && generalInfo?.name" class="summary-section">
+        <h3>{{ 'summary.generalInfo.title' | translate }}</h3>
+        <mat-divider></mat-divider>
+
+        <div class="summary-item">
+          <span class="label">{{ 'summary.generalInfo.name' | translate }}:</span>
+          <span class="value">{{ generalInfo.name }}</span>
+        </div>
+
+        <div *ngIf="generalInfo.website" class="summary-item">
+          <span class="label">{{ 'summary.generalInfo.website' | translate }}:</span>
+          <span class="value">{{ generalInfo.website }}</span>
+        </div>
+
+        <div *ngIf="generalInfo.phone" class="summary-item">
+          <span class="label">{{ 'summary.generalInfo.phone' | translate }}:</span>
+          <span>{{ generalInfo.phone }}</span>
+        </div>
+
+        <div *ngIf="generalInfo.email" class="summary-item">
+          <span class="label">{{ 'summary.generalInfo.email' | translate }}:</span>
+          <span>{{ generalInfo.email }}</span>
+        </div>
+
+        <div *ngIf="generalInfo.cuisine" class="summary-item">
+          <span class="label">{{ 'summary.generalInfo.cuisine' | translate }}:</span>
+          <span class="value">{{ getCuisineLabel(generalInfo.cuisine) }}</span>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep >= 2 && categories.length > 0" class="summary-section">
+        <h3>{{ 'summary.menu.title' | translate }}</h3>
+        <mat-divider></mat-divider>
+
+        <div class="menu-summary">
+          <div *ngFor="let category of categories" class="category-summary">
+            <div class="category-header">
+              <mat-icon>{{ category.icon }}</mat-icon>
+              <span class="category-name">{{ category.name }}</span>
+              <span class="items-count">
+                {{ category.items.length }}
+                {{ 'summary.menu.itemsCount' | translate:{ count: category.items.length } }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep >= 3 && orderSettings" class="summary-section">
+        <h3>{{ 'summary.orderSettings.title' | translate }}</h3>
+        <mat-divider></mat-divider>
+
+        <div class="summary-item">
+          <span class="label">{{ 'summary.orderSettings.onlineOrdering' | translate }}:</span>
+          <span class="value">
+            {{ orderSettings.enableOnlineOrdering ? ('summary.orderSettings.enabled' | translate) : ('summary.orderSettings.disabled' | translate) }}
+          </span>
+        </div>
+
+        <div *ngIf="orderSettings.minOrderAmount" class="summary-item">
+          <span class="label">{{ 'summary.orderSettings.minAmount' | translate }}:</span>
+          <span class="value">{{ orderSettings.minOrderAmount }}€</span>
+        </div>
+
+        <div *ngIf="orderSettings.openingTime" class="summary-item">
+          <span class="label">{{ 'summary.orderSettings.schedule' | translate }}:</span>
+          <span class="value">
+            {{ orderSettings.openingTime }} - {{ orderSettings.closingTime }}
+          </span>
+        </div>
+
+        <div *ngIf="orderSettings.prepTime" class="summary-item">
+          <span class="label">{{ 'summary.orderSettings.prepTime' | translate }}:</span>
+          <span class="value">{{ orderSettings.prepTime }} min</span>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep >= 4 && team.length > 0" class="summary-section">
+        <h3>{{ 'summary.team.title' | translate }}</h3>
+        <mat-divider></mat-divider>
+
+        <div class="team-summary">
+          <div *ngFor="let member of team" class="summary-item">
+            <span class="label">{{ member.name }}</span>
+            <span class="value">{{ member.role }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noInfo>
+      <div class="no-info-message">
+        {{ 'summary.emptyMessage' | translate }}
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,100 @@
+// spacing.scss
+
+// Margin top
+.mt-1 {
+  margin-top: var(--space-1);
+}
+
+.mt-2 {
+  margin-top: var(--space-2);
+}
+
+.mt-3 {
+  margin-top: var(--space-3);
+}
+
+.mt-4 {
+  margin-top: var(--space-4);
+}
+
+.mt-5 {
+  margin-top: var(--space-5);
+}
+
+.mt-6 {
+  margin-top: var(--space-6);
+}
+
+// Margin bottom
+.mb-1 {
+  margin-bottom: var(--space-1);
+}
+
+.mb-2 {
+  margin-bottom: var(--space-2);
+}
+
+.mb-3 {
+  margin-bottom: var(--space-3);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-4);
+}
+
+.mb-5 {
+  margin-bottom: var(--space-5);
+}
+
+.mb-6 {
+  margin-bottom: var(--space-6);
+}
+
+// Margin start / end
+.ms-1 {
+  margin-inline-start: var(--space-1);
+}
+
+.ms-2 {
+  margin-inline-start: var(--space-2);
+}
+
+.ms-3 {
+  margin-inline-start: var(--space-3);
+}
+
+.ms-4 {
+  margin-inline-start: var(--space-4);
+}
+
+.ms-5 {
+  margin-inline-start: var(--space-5);
+}
+
+.ms-6 {
+  margin-inline-start: var(--space-6);
+}
+
+.me-1 {
+  margin-inline-end: var(--space-1);
+}
+
+.me-2 {
+  margin-inline-end: var(--space-2);
+}
+
+.me-3 {
+  margin-inline-end: var(--space-3);
+}
+
+.me-4 {
+  margin-inline-end: var(--space-4);
+}
+
+.me-5 {
+  margin-inline-end: var(--space-5);
+}
+
+.me-6 {
+  margin-inline-end: var(--space-6);
+}
