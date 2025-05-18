@@ -4,7 +4,7 @@
 
   <form (ngSubmit)="submit()" [formGroup]="addressForm" class="form-grid">
     <!-- Rue avec autocomplétion -->
-    <mat-form-field appearance="outline" class="full-width">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-icon matPrefix>home</mat-icon>
       <mat-label>{{ 'addressDialog.street' | translate }}</mat-label>
       <input
@@ -23,7 +23,7 @@
     </mat-form-field>
 
     <!-- Ville -->
-    <mat-form-field appearance="outline" class="full-width">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-icon matPrefix>location_city</mat-icon>
       <mat-label>{{ 'addressDialog.city' | translate }}</mat-label>
       <input

@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field appearance="outline" class="w-full">
     <mat-label>{{ 'addMenu.firstStep.name' | translate }}</mat-label>
     <mat-icon matPrefix>store</mat-icon>
     <input formControlName="name" matInput />
@@ -16,7 +16,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field appearance="outline" class="w-full">
     <mat-label>{{ 'addMenu.firstStep.website' | translate }}</mat-label>
     <mat-icon matPrefix>language</mat-icon>
     <input (blur)="formGroup.get('website')?.markAsTouched()" formControlName="website" matInput type="url" />
@@ -25,7 +25,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field appearance="outline" class="w-full">
     <mat-label>{{ 'addMenu.firstStep.phone' | translate }}</mat-label>
     <mat-icon matPrefix>call</mat-icon>
     <input
@@ -38,7 +38,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field appearance="outline" class="w-full">
     <mat-label>{{ 'addMenu.firstStep.email' | translate }}</mat-label>
     <mat-icon matPrefix>mail</mat-icon>
     <input formControlName="email" matInput type="email" />
@@ -47,7 +47,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field appearance="outline" class="w-full">
     <mat-label>{{ 'addMenu.firstStep.cuisine' | translate }}</mat-label>
     <mat-select formControlName="cuisine">
       <mat-option value="italian">Italienne</mat-option>

@@ -34,8 +34,8 @@
 
         <div [formGroupName]="i" class="category-content">
           <div class="category-header">
-            <div class="input-row full-width">
-              <mat-form-field appearance="outline" class="category-name-field full-width">
+            <div class="input-row w-full">
+              <mat-form-field appearance="outline" class="category-name-field w-full">
                 <mat-label>{{ 'addMenu.secondStep.nameLabel' | translate }}</mat-label>
                 <input formControlName="name" matInput required />
                 <mat-error *ngIf="category.get('name')?.hasError('required')">
@@ -43,7 +43,7 @@
                 </mat-error>
               </mat-form-field>
 
-              <mat-form-field appearance="outline" class="full-width">
+              <mat-form-field appearance="outline" class="w-full">
                 <mat-label>Icône</mat-label>
                 <mat-select formControlName="icon" required>
                   <mat-option value="restaurant_menu">🍽️ Menu</mat-option>
@@ -91,14 +91,14 @@
 
               <div class="item-form">
                 <div class="input-row">
-                  <mat-form-field appearance="outline" class="category-name-field full-width">
+                  <mat-form-field appearance="outline" class="category-name-field w-full">
                     <mat-label>{{ 'addMenu.secondStep.itemName' | translate }}</mat-label>
                     <input formControlName="name" matInput
                            placeholder="{{ 'addMenu.secondStep.itemNamePlaceholder' | translate }}"
                            required />
                   </mat-form-field>
 
-                  <mat-form-field appearance="outline" class="full-width">
+                  <mat-form-field appearance="outline" class="w-full">
                     <mat-label>{{ 'addMenu.secondStep.itemPrice' | translate }}</mat-label>
                     <input
                       formControlName="price"
@@ -113,7 +113,7 @@
                   </mat-form-field>
                 </div>
 
-                <mat-form-field appearance="outline" class="full-width">
+                <mat-form-field appearance="outline" class="w-full">
                   <mat-label>{{ 'addMenu.secondStep.itemDescription' | translate }}</mat-label>
                   <textarea
                     formControlName="description"

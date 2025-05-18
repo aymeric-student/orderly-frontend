@@ -1,4 +1,6 @@
 @use './styles/utils/spacing';
+@use './styles/utils/flex';
+@use './styles/utils/text';
 
 * {
   margin: 0;
@@ -40,7 +42,7 @@ html, body {
   height: 100%;
 }
 
-.full-width {
+.w-full {
   width: 100%;
 }
 
